@@ -16,9 +16,9 @@ public class BoardBehavior3D : MonoBehaviour
     void Start()
     {
         bc = GetComponent<BoardCreate3D>();
-        x_increments = bc.width * bc.scalar;
-        y_increments = bc.height * bc.scalar;
-        z_increments = bc.depth * bc.scalar;
+        x_increments = bc.width * bc.scalar*bc.boardScale;
+        y_increments = bc.height * bc.scalar*bc.boardScale;
+        z_increments = bc.depth * bc.scalar*bc.boardScale;
     }
 
 }

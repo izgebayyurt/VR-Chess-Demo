@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AddPieces : MonoBehaviour
 {
-
-    BoardCreate3D bc;
+    public BoardCreate3D bc;
+    private float pieceScale;
 
     // Pieces
     public GameObject wPawn;
@@ -21,7 +21,7 @@ public class AddPieces : MonoBehaviour
     public GameObject wKing;
     public GameObject bKing;
 
-    // xyz 
+    // xyz
     int x_tile_count;
     int y_tile_count;
     int z_tile_count;
@@ -41,6 +41,8 @@ public class AddPieces : MonoBehaviour
         y_tile_count = bc.y_tile_count;
         z_tile_count = bc.z_tile_count;
 
+        pieceScale = bc.pieceScale*bc.boardScale;
+
         board = bc.board;
 
         diameter = new Vector3(0, 0, bc.dark_tile.transform.localScale.z);
@@ -57,19 +59,25 @@ public class AddPieces : MonoBehaviour
             {
                 bc.pieceArray[i, k, 1] = Instantiate(wPawn, board[i, k, 1].transform.position , EulerToQuaternion(90, 0, 0));
                 bc.pieceArray[i, k, 1].transform.parent = gameObject.transform;
+                bc.pieceArray[i, k, 1].transform.localScale = Vector3.one*(pieceScale);
 
                 bc.pieceArray[i, k, y_tile_count - 2] = Instantiate(bPawn, board[i, k, y_tile_count - 2].transform.position , EulerToQuaternion(-90, 0, 0));
                 bc.pieceArray[i, k, y_tile_count - 2].transform.parent = gameObject.transform;
+                bc.pieceArray[i, k, y_tile_count - 2].transform.localScale = Vector3.one*(pieceScale);
             }
-               
+
         }
 
         // Kings
         bc.pieceArray[4, 4, 0] = Instantiate(wKing, board[4, 4, 0].transform.position , EulerToQuaternion(90, 0, 0));
         bc.pieceArray[4, 4, 0].transform.parent = gameObject.transform;
+        bc.pieceArray[4, 4, 0].transform.localScale = Vector3.one*(pieceScale);
+
 
         bc.pieceArray[4, 4, y_tile_count - 1] = Instantiate(bKing, board[4, 4, y_tile_count - 1].transform.position , EulerToQuaternion(-90, 0, 0));
         bc.pieceArray[4, 4, y_tile_count - 1].transform.parent = gameObject.transform;
+        bc.pieceArray[4, 4, y_tile_count - 1].transform.localScale = Vector3.one*(pieceScale);
+
 
         // Queens
         for (int i = 3; i <= 5; i++)
@@ -80,10 +88,12 @@ public class AddPieces : MonoBehaviour
                 {
                     bc.pieceArray[i, k, 0] = Instantiate(wQueen, board[i, k, 0].transform.position , EulerToQuaternion(90, 0, 0));
                     bc.pieceArray[i, k, 0].transform.parent = gameObject.transform;
+                    bc.pieceArray[i, k, 0].transform.localScale = Vector3.one*(pieceScale);
 
                     bc.pieceArray[i, k, y_tile_count - 1] = Instantiate(bQueen, board[i, k, y_tile_count - 1].transform.position , EulerToQuaternion(-90, 0, 0));
                     bc.pieceArray[i, k, y_tile_count - 1].transform.parent = gameObject.transform;
-                }              
+                    bc.pieceArray[i, k, y_tile_count - 1].transform.localScale = Vector3.one*(pieceScale);
+                }
             }
         }
 
@@ -96,9 +106,11 @@ public class AddPieces : MonoBehaviour
                 {
                     bc.pieceArray[i, k, 0] = Instantiate(wBishop, board[i, k, 0].transform.position , EulerToQuaternion(90, 0, 0));
                     bc.pieceArray[i, k, 0].transform.parent = gameObject.transform;
+                    bc.pieceArray[i, k, 0].transform.localScale = Vector3.one*(pieceScale);
 
                     bc.pieceArray[i, k, y_tile_count - 1] = Instantiate(bBishop, board[i, k, y_tile_count - 1].transform.position , EulerToQuaternion(-90, 0, 0));
                     bc.pieceArray[i, k, y_tile_count - 1].transform.parent = gameObject.transform;
+                    bc.pieceArray[i, k, y_tile_count - 1].transform.localScale = Vector3.one*(pieceScale);
                 }
             }
         }
@@ -112,9 +124,11 @@ public class AddPieces : MonoBehaviour
                 {
                     bc.pieceArray[i, k, 0] = Instantiate(wKnight, board[i, k, 0].transform.position , EulerToQuaternion(90, 0, 0));
                     bc.pieceArray[i, k, 0].transform.parent = gameObject.transform;
+                    bc.pieceArray[i, k, 0].transform.localScale = Vector3.one*(pieceScale);
 
                     bc.pieceArray[i, k, y_tile_count - 1] = Instantiate(bKnight, board[i, k, y_tile_count - 1].transform.position , EulerToQuaternion(-90, 0, 0));
                     bc.pieceArray[i, k, y_tile_count - 1].transform.parent = gameObject.transform;
+                    bc.pieceArray[i, k, y_tile_count - 1].transform.localScale = Vector3.one*(pieceScale);
                 }
             }
         }
@@ -128,9 +142,11 @@ public class AddPieces : MonoBehaviour
                 {
                     bc.pieceArray[i, k, 0] = Instantiate(wRook, board[i, k, 0].transform.position , EulerToQuaternion(90, 0, 0));
                     bc.pieceArray[i, k, 0].transform.parent = gameObject.transform;
+                    bc.pieceArray[i, k, 0].transform.localScale = Vector3.one*(pieceScale);
 
                     bc.pieceArray[i, k, y_tile_count - 1] = Instantiate(bRook, board[i, k, y_tile_count - 1].transform.position , EulerToQuaternion(-90, 0, 0));
                     bc.pieceArray[i, k, y_tile_count - 1].transform.parent = gameObject.transform;
+                    bc.pieceArray[i, k, y_tile_count - 1].transform.localScale = Vector3.one*(pieceScale);
                 }
             }
         }

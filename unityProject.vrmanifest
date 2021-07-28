@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.vrchessdemo.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\INSITE\\Desktop\\Demos(Base)\\Demos(Base)\\Chess Demos\\VR-Chess-Demo-main\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\imred\\Documents\\Repositories\\VR-Chess-Demo\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "VR Chess Demo [Testing]"

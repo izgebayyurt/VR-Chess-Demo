@@ -12,13 +12,16 @@ public class BoardCreate3D : MonoBehaviour
     [HideInInspector]
     public float width, height, depth;
 
-    // xyz 
+    // xyz
     public int x_tile_count;
     public int y_tile_count;
     public int z_tile_count;
 
     // scale multiplier (put in the measurement of the model in blender)
     public float scalar = 4.9f;
+    public float boardScale = .15f;
+    public float tileScale = .2f;
+    public float pieceScale = .2f;
 
     // Store the tiles in this array
     public GameObject[,,] board;
@@ -59,14 +62,15 @@ public class BoardCreate3D : MonoBehaviour
                 {
                     if ((i + j + k) % 2 == 0)
                     {
-                        board[i, j, k] = Instantiate(light_tile, new Vector3(width * i, height * j, depth * k) * scalar, Quaternion.identity);
+                        board[i, j, k] = Instantiate(light_tile, new Vector3(width * i, height * j, depth * k) * scalar*boardScale, Quaternion.identity);
                     }
                     else
                     {
-                        board[i, j, k] = Instantiate(dark_tile, new Vector3(width * i, height * j, depth * k) * scalar, Quaternion.identity);
+                        board[i, j, k] = Instantiate(dark_tile, new Vector3(width * i, height * j, depth * k) * scalar*boardScale, Quaternion.identity);
                     }
 
                     board[i, j, k].transform.parent = gameObject.transform;
+                    board[i,j,k].transform.localScale = Vector3.one*(boardScale*tileScale);
                 }
             }
         }

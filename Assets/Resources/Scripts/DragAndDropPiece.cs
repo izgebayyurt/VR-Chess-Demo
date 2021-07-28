@@ -24,8 +24,9 @@ public class DragAndDropPiece : MonoBehaviour
     // position of the piece
     // (in case we need to return it when dropped out of bounds)
     Vector3 objectPos;
+	Quaternion objectRot;
 
-    // the last highlighted tile's coordinates (to turn it back to non-highlighted) 
+    // the last highlighted tile's coordinates (to turn it back to non-highlighted)
     int lastTile_x = -1; int lastTile_y = -1; int lastTile_z = -1;
 
     // color of the highlighted / non-highlighted tiles
@@ -51,7 +52,7 @@ public class DragAndDropPiece : MonoBehaviour
             if (usingOutline){
                 outline.color = 0;
                 outline.enabled = true;
-            }  
+            }
         }
     }
 
@@ -84,6 +85,7 @@ public class DragAndDropPiece : MonoBehaviour
 
         // store gameObject pos
         objectPos = gameObject.transform.position;
+	objectRot = gameObject.transform.rotation;
 
         // set the parameters
         mouseDown = true;
@@ -137,6 +139,7 @@ public class DragAndDropPiece : MonoBehaviour
             if (CheckPiecePositionValid(x_pos, y_pos, z_pos))
             {
                 gameObject.transform.position = bc.board[x_pos, y_pos, z_pos].transform.position;
+		gameObject.transform.rotation = objectRot;
                 bc.board[x_pos, y_pos, z_pos].GetComponent<MeshRenderer>().material.SetColor("_Color", GetOriginalTileColor(x_pos, y_pos, z_pos));
 
             }
@@ -144,6 +147,7 @@ public class DragAndDropPiece : MonoBehaviour
             {
                 // if not, take the piece back to its position
                 gameObject.transform.position = objectPos;
+		gameObject.transform.rotation = objectRot;
 
                 // if we highlighted a invalid position (like trying to capture
                 // our piece, disable highlight when we drop the piece
@@ -160,11 +164,12 @@ public class DragAndDropPiece : MonoBehaviour
         else
         {
             gameObject.transform.position = objectPos;
+		gameObject.transform.rotation = objectRot;
 
         }
     }
 
-    /*  Uses the current world position of the dragged piece to highlight the 
+    /*  Uses the current world position of the dragged piece to highlight the
         nearest tile. If the dragged piece is too far away from a tile, it does
         nothing
      */
@@ -198,7 +203,7 @@ public class DragAndDropPiece : MonoBehaviour
 
         return new int[] {x_pos,y_pos,z_pos};
     }
-    /*  After grabbing a piece and moving it around, changes the color of the 
+    /*  After grabbing a piece and moving it around, changes the color of the
         destination tile to indicate where the piece will be placed. If there
         is no piece on the destination tile, it changes the tile color.
         Otherwise, it highlights the piece about to be captured.
@@ -228,7 +233,7 @@ public class DragAndDropPiece : MonoBehaviour
                 bc.pieceArray[x_pos, y_pos, z_pos].GetComponent<Outline>().color = 2;
                 bc.pieceArray[x_pos, y_pos, z_pos].GetComponent<Outline>().enabled = true;
             }
-           
+
         }
 
         // disable the startious highlight since we highlighted a new tile
@@ -244,7 +249,7 @@ public class DragAndDropPiece : MonoBehaviour
             //     piece.GetComponent<Outline>().color = 0;
             //     piece.GetComponent<Outline>().enabled = false;
             // }
-            
+
         }
 
         // update the position of the last tile
@@ -290,7 +295,7 @@ public class DragAndDropPiece : MonoBehaviour
         to the current piece position and target piece position.
         Captures and removes a piece if its there. If not, just moves the piece.
      */
-    
+
     void ModifyBoardPosition(int cur_x, int cur_y, int cur_z, int tar_x, int tar_y, int tar_z)
     {
         if (bc.pieceArray[tar_x, tar_y, tar_z] != null)
@@ -307,7 +312,7 @@ public class DragAndDropPiece : MonoBehaviour
     }
 
 
-    /*  Gets the original color of the tile 
+    /*  Gets the original color of the tile
         This is currently just white as the material is white but the color
         comes from emission
      */
