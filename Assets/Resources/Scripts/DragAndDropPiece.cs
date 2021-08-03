@@ -16,6 +16,7 @@ public class DragAndDropPiece : MonoBehaviour
     BoardBehavior3D bb;
     BoardCreate3D bc;
     AddPieces ap;
+    ChessRules cr;
 
     // whether mouse is being pressed or not
     // (to avoid highlighting more than one piece at a time)
@@ -39,6 +40,7 @@ public class DragAndDropPiece : MonoBehaviour
         bb = GetComponentInParent<BoardBehavior3D>();
         bc = GetComponentInParent<BoardCreate3D>();
         ap = GetComponentInParent<AddPieces>();
+        cr = GetComponentInParent<ChessRules>();
     }
 
     void OnMouseEnter()
@@ -66,7 +68,13 @@ public class DragAndDropPiece : MonoBehaviour
 
         mouseDown = false;
         bb.isMoving = false;
+<<<<<<< Updated upstream
         outline.color = 0;
+=======
+        if (usingOutline)
+            outline.color = 0;
+
+>>>>>>> Stashed changes
     }
 
     void OnMouseDown()
@@ -77,11 +85,19 @@ public class DragAndDropPiece : MonoBehaviour
         mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
 
         // store gameObject pos
+<<<<<<< Updated upstream
         objectPos = gameObject.transform.position + ap.diameter;
+=======
+        objectPos = gameObject.transform.position;
+	    objectRot = gameObject.transform.rotation;
+>>>>>>> Stashed changes
 
         // set the parameters
         mouseDown = true;
         bb.isMoving = true;
+
+        // Highlighting the possible moves for the piece being grabbed
+        HighlightPossibleMoves();
     }
 
     void OnMouseDrag()
@@ -125,8 +141,14 @@ public class DragAndDropPiece : MonoBehaviour
             // if its in the board boundries, check if its legally valid
             if (CheckPiecePositionValid(x_pos, y_pos, z_pos))
             {
+<<<<<<< Updated upstream
                 gameObject.transform.position = bc.board[x_pos, y_pos, z_pos].transform.position;
                 bc.board[x_pos, y_pos, z_pos].GetComponent<MeshRenderer>().material.SetColor("_Color", GetOriginalTileColor(x_pos, y_pos, z_pos));
+=======
+                gameObject.transform.position = bc.tileArray[x_pos, y_pos, z_pos].transform.position;
+		gameObject.transform.rotation = objectRot;
+                bc.tileArray[x_pos, y_pos, z_pos].GetComponent<MeshRenderer>().material.SetColor("_Color", GetOriginalTileColor(x_pos, y_pos, z_pos));
+>>>>>>> Stashed changes
 
             }
             else
@@ -204,7 +226,7 @@ public class DragAndDropPiece : MonoBehaviour
         if ((start_x_pos == x_pos && start_y_pos == y_pos && start_z_pos == z_pos) || bc.pieceArray[x_pos, y_pos, z_pos] == null)
         {
             // change the color of the tile
-            bc.board[x_pos, y_pos, z_pos].GetComponent<MeshRenderer>().material.SetColor("_Color", tileHighlightColor);
+            bc.tileArray[x_pos, y_pos, z_pos].GetComponent<MeshRenderer>().material.SetColor("_Color", tileHighlightColor);
         }
         else
         {
@@ -216,7 +238,7 @@ public class DragAndDropPiece : MonoBehaviour
         // disable the startious highlight since we highlighted a new tile
         if (lastTile_x >= 0)
         {
-            GameObject piece = bc.board[lastTile_x, lastTile_y, lastTile_z];
+            GameObject piece = bc.tileArray[lastTile_x, lastTile_y, lastTile_z];
 
             piece.GetComponent<MeshRenderer>().material.SetColor("_Color", GetOriginalTileColor(lastTile_x, lastTile_y, lastTile_z));
 
@@ -305,4 +327,17 @@ public class DragAndDropPiece : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
 }
+=======
+    void HighlightPossibleMoves()
+    {
+        // creating a list to hold all the locations that the piece can move to
+        List<GameObject> moveableTiles= new List<GameObject>();
+
+        // filling this list
+        moveableTiles = cr.getLegalMoves(this.gameObject, GetCoordinates(objectPos));
+    }
+
+}
+>>>>>>> Stashed changes

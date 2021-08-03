@@ -24,7 +24,7 @@ public class BoardBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        board = boardCreate3D.board;
+        board = boardCreate3D.tileArray;
 
         lastLayer = UpdateTransparency(currentLayer);
     }

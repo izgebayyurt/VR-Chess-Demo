@@ -17,4 +17,9 @@ public class ChessRules : MonoBehaviour
     {
         
     }
+
+    public List<GameObject> getLegalMoves(GameObject piece, int[] loc)
+    {
+
+    }
 }

@@ -680,6 +680,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
+<<<<<<< Updated upstream
+=======
+  activeInputHandler: 2
+>>>>>>> Stashed changes
   cloudProjectId: dd03d2d4-15c1-4a6e-886a-cf374569e001
   framebufferDepthMemorylessMode: 0
   projectName: VR Chess Demo

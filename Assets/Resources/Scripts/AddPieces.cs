@@ -41,7 +41,11 @@ public class AddPieces : MonoBehaviour
         y_tile_count = bc.y_tile_count;
         z_tile_count = bc.z_tile_count;
 
+<<<<<<< Updated upstream
         board = bc.board;
+=======
+        board = bc.tileArray;
+>>>>>>> Stashed changes
 
         diameter = new Vector3(0, 0, bc.dark_tile.transform.localScale.z);
 

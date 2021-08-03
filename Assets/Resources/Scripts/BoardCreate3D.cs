@@ -21,7 +21,7 @@ public class BoardCreate3D : MonoBehaviour
     public float scalar = 4.9f;
 
     // Store the tiles in this array
-    public GameObject[,,] board;
+    public GameObject[,,] tileArray;
 
     // Store the pieces in this array
     public GameObject[,,] pieceArray;
@@ -34,7 +34,7 @@ public class BoardCreate3D : MonoBehaviour
         depth = dark_tile.transform.localScale.z;
 
         // Initialize the board array
-        board = new GameObject[x_tile_count, y_tile_count, z_tile_count];
+        tileArray = new GameObject[x_tile_count, y_tile_count, z_tile_count];
         pieceArray = new GameObject[x_tile_count, y_tile_count, z_tile_count];
 
         PlaceTiles();
@@ -53,6 +53,7 @@ public class BoardCreate3D : MonoBehaviour
                 {
                     if ((i + j + k) % 2 == 0)
                     {
+<<<<<<< Updated upstream
                         board[i, j, k] = Instantiate(light_tile, new Vector3(width * i, height * j, depth * k) * scalar, Quaternion.identity);
                     }
                     else
@@ -62,6 +63,16 @@ public class BoardCreate3D : MonoBehaviour
 
                     board[i, j, k].transform.parent = gameObject.transform;
                     board[i, j, k].AddComponent<TileBehavior>();
+=======
+                        tileArray[i, j, k] = Instantiate(light_tile, new Vector3(width * i, height * j, depth * k) * scalar, Quaternion.identity);
+                    }
+                    else
+                    {
+                        tileArray[i, j, k] = Instantiate(dark_tile, new Vector3(width * i, height * j, depth * k) * scalar, Quaternion.identity);
+                    }
+
+                    tileArray[i, j, k].transform.parent = gameObject.transform;
+>>>>>>> Stashed changes
                 }
             }
         }
