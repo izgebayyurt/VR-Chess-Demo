@@ -43,7 +43,7 @@ public class DragAndDropPiece : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (!bb.isMoving)
+        if (!Chess.pieceMoving)
         {
             outline.color = 0;
             outline.enabled = true;
@@ -55,7 +55,6 @@ public class DragAndDropPiece : MonoBehaviour
         if (!mouseDown)
         {
             outline.enabled = false;
-
         }
     }
 
@@ -65,7 +64,7 @@ public class DragAndDropPiece : MonoBehaviour
         DropPiece();
 
         mouseDown = false;
-        bb.isMoving = false;
+        Chess.pieceMoving = false;
         outline.color = 0;
     }
 
@@ -81,7 +80,7 @@ public class DragAndDropPiece : MonoBehaviour
 
         // set the parameters
         mouseDown = true;
-        bb.isMoving = true;
+        Chess.pieceMoving = true;
     }
 
     void OnMouseDrag()
